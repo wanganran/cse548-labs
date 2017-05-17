@@ -66,6 +66,8 @@ void mmult_hw (AXI_VAL in_stream[IS_SIZE], AXI_VAL out_stream[OS_SIZE])
 		}
 	}
 
+	#pragma HLS ARRAY_PARTITION variable=in_buf block factor=8 dim=2
+	#pragma HLS ARRAY_PARTITION variable=weight_buf block factor=8 dim=2
 
 	// Iterate over batch elements
 	L1: for (int i = 0; i < BATCH; i++) {
